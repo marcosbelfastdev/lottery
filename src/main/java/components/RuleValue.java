@@ -1,3 +1,5 @@
+package components;
+
 public enum RuleValue {
     RANDOM,
     MOST_FREQUENT_BALLS,

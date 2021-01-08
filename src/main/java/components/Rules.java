@@ -1,3 +1,5 @@
+package components;
+
 public class Rules {
 
     RulesOptions rulesOptions = new RulesOptions();

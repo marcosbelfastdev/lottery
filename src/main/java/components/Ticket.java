@@ -1,3 +1,5 @@
+package components;
+
 import java.util.*;
 
 public class Ticket {
@@ -62,11 +64,15 @@ public class Ticket {
     }
 
     public Ticket getAny(int numberOfBalls, Ticket... tickets) {
+
         TreeSet<Integer> balls = new TreeSet<Integer>();
         int ballsAvailable = 0;
 
         // Find all distinct balls amongst all tickets passed in
         for (Ticket ticket : tickets) {
+            if (ticket.getAllBallsPlayed() == null) {
+                break;
+            }
             for (int ball : ticket.getAllBallsPlayed()) {
                 try {
                     balls.add(ball);
@@ -85,21 +91,27 @@ public class Ticket {
         // to the ticket buffer.
 
         TreeSet<Integer> buffer = new TreeSet<Integer>();
+        List<Integer> triedBalls = new ArrayList<Integer>();
         for (int i=0; i<numberOfBalls; i++) {
-            int ball = ballsList.get(_random.nextInt(_high) + 1);
+            int ball = ballsList.get(_random.nextInt(_positions));
             try {
+                triedBalls.add(ball);
                 buffer.add(ball);
             } catch (Exception ignore) {
-
+                if (triedBalls.contains(ball)) {
+                    i--;
+                }
             }
         }
 
         // Now add local buffer built to ticket class buffer
         for (int ball : buffer) {
-            try {
-                _buffer.add(ball);
-            } catch (Exception ignore) {
+            if (_buffer.size() < numberOfBalls) {
+                try {
+                    _buffer.add(ball);
+                } catch (Exception ignore) {
 
+                }
             }
         }
 
@@ -138,6 +150,7 @@ public class Ticket {
 
         while (_balls.size() < _positions) {
             try {
+                Thread.sleep(_random.nextInt(_high) * 2);
                 _balls.add(_random.nextInt(_high) + 1);
             } catch (Exception ignore) {
 

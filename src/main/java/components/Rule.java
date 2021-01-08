@@ -1,3 +1,5 @@
+package components;
+
 public enum Rule {
     NEVER_REPEAT_HISTORY,
     COMPLETE_REMAINING_WITH,

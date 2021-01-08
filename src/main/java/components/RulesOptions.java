@@ -1,3 +1,7 @@
+package components;
+
+import components.Rule;
+
 import java.util.HashMap;
 import java.util.Map;
 
