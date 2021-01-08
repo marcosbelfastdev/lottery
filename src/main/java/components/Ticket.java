@@ -150,8 +150,9 @@ public class Ticket {
 
         while (_balls.size() < _positions) {
             try {
-                Thread.sleep(_random.nextInt(_high) * 2);
-                _balls.add(_random.nextInt(_high) + 1);
+                int power = _random.nextInt(4) + 1;
+                int rnd = _random.nextInt(_high * power);
+                _balls.add((int) (rnd/power) + 1);
             } catch (Exception ignore) {
 
             }

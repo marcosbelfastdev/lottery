@@ -27,7 +27,7 @@ public class MegaSena {
         tickets[0].add(rnd(), 27).play();                          // start with all random values
         for (int i=1; i<tickets.length; i++) {
             // now play by trying to get any 3 repeating balls amongst all played tickets
-            tickets[i].getAny(2, tickets);
+            tickets[i].getAny(3, tickets);
             tickets[i].add(rnd(), rnd(), 10);
             tickets[i].play();
         }
