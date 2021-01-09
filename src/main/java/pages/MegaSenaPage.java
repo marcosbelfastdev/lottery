@@ -18,11 +18,6 @@ public class MegaSenaPage extends MegaSenaAttributes {
             colocarCarrinho().click();
             //driver().navigate().refresh();
             balls.clear();
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
     }
 

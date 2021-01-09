@@ -19,7 +19,6 @@ public class Apostas {
 
         DriverManager.launchBrowser();
         driver().setOption(Common.HIGHLIGHT_ELEMENTS, true);
-        driver().setOption(Common.HIGHLIGHT_DELAY_AFTER, 200);
         driver().navigate().to("http://loterias.caixa.gov.br/wps/portal/loterias");
 
         PortalLoteriasPage portal = new PortalLoteriasPage();
