@@ -1,8 +1,15 @@
 package tests;
 
+import attributes.LoteriasCaixaAttributes;
+import org.junit.After;
 import org.junit.Test;
 import java.util.*;
 import components.Ticket;
+import org.openqa.selenium.WebDriver;
+import pages.LoteriasCaixaPage;
+import pages.MegaSenaPage;
+import pages.PortalLoteriasPage;
+import utils.DriverManager;
 
 public class MegaSena {
 
@@ -12,7 +19,6 @@ public class MegaSena {
 
     HashSet<Ticket> allMegasenaTickets = new HashSet<Ticket>();
     Random rnd = new Random();
-
 
     @Test
     public void PlayMostFrequentRepeatFromAll() {
@@ -28,13 +34,12 @@ public class MegaSena {
         for (int i=1; i<tickets.length; i++) {
             // now play by trying to get any 3 repeating balls amongst all played tickets
             tickets[i].getAny(3, tickets);
-            tickets[i].add(rnd(), rnd(), 10);
             tickets[i].play();
         }
 
-        for (int i=0; i<tickets.length; i++) {
-            System.out.println(tickets[i].toString());
-        }
+        Apostas apostas = new Apostas();
+        apostas.apostar(tickets);
+
     }
 
     @Test
@@ -54,9 +59,8 @@ public class MegaSena {
             tickets[i].play();
         }
 
-        for (int i=0; i<tickets.length; i++) {
-            System.out.println(tickets[i].toString());
-        }
+        Apostas apostas = new Apostas();
+        apostas.apostar(tickets);
     }
 
     @Test
@@ -74,13 +78,21 @@ public class MegaSena {
             tickets[i].play();
         }
 
-        for (int i=0; i<tickets.length; i++) {
-            System.out.println(tickets[i].toString());
-        }
     }
 
     public int rnd() {
         Random random = new Random();
         return random.nextInt(HIGH) + LOW;
+    }
+
+    @After
+    public void tearDown() {
+        try {
+            Thread.sleep(600000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        // gives you time to check out
+        // webdriver will close automatically due to java hook.
     }
 }

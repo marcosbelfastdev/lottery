@@ -73,6 +73,7 @@ public class Ticket {
             if (ticket.getAllBallsPlayed() == null) {
                 break;
             }
+
             for (int ball : ticket.getAllBallsPlayed()) {
                 try {
                     balls.add(ball);
@@ -81,6 +82,7 @@ public class Ticket {
 
                 }
             }
+
         }
 
         List<Integer> ballsList = new ArrayList<Integer>();
@@ -150,9 +152,17 @@ public class Ticket {
 
         while (_balls.size() < _positions) {
             try {
-                int power = _random.nextInt(4) + 1;
+                int power = _random.nextInt(2) + 1;
                 int rnd = _random.nextInt(_high * power);
-                _balls.add((int) (rnd/power) + 1);
+
+                // get ball or high-ball?
+                int whichOne = _random.nextInt(3);
+                if (whichOne > 1) {
+                    rnd = _high - ((int) rnd / power) + _low;
+                } else {
+                    rnd = (int) rnd/power + _low;
+                }
+                _balls.add(rnd);
             } catch (Exception ignore) {
 
             }
