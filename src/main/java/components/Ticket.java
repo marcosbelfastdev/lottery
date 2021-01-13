@@ -1,5 +1,4 @@
 package components;
-
 import java.util.*;
 
 public class Ticket {
@@ -177,6 +176,18 @@ public class Ticket {
     @Override
     public String toString() {
         return _balls.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        /*
+        We will create a hashcode here that refers only to the balls played
+         */
+        StringBuilder sb = new StringBuilder();
+        for (int ball : _balls) {
+            sb.append(ball);
+        }
+        return sb.toString().hashCode();
     }
 
 

@@ -6,12 +6,12 @@ import attributes.PortalLoteriasAttributes;
 public class LoteriasCaixaPage extends LoteriasCaixaAttributes {
 
     public void confirmarIdade() {
-        botaoSim().click();
+        botaoSim.click();
     }
 
     public void apostar() {
-        aposteJaBotao().click();
-        megaSenaAposteAgoraLink().click();
+        aposteJaBotao.click();
+        megaSenaAposteAgoraLink.click();
     }
 
 }

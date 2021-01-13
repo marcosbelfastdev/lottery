@@ -1,6 +1,7 @@
 package tests;
 
 import attributes.LoteriasCaixaAttributes;
+import components.TicketSeries;
 import org.junit.After;
 import org.junit.Test;
 import java.util.*;
@@ -39,6 +40,26 @@ public class MegaSena {
 
         Apostas apostas = new Apostas();
         apostas.apostar(tickets);
+
+    }
+
+    @Test
+    public void PlayMostFrequentRepeatFromAllUsingSeries() {
+
+        /*
+        *** not working - causing infinte loop - next to check
+         */
+
+        final int MAX_TICKETS = 20;
+        TicketSeries tickets = new TicketSeries(MAX_TICKETS, 6, LOW, HIGH);
+
+        tickets.getTicket(0).add(rnd(), 27).play();
+        for (int i=0; i<tickets.size(); i++) {
+            tickets.getTicket(i).getAny(3, tickets.getTickets()).play();
+        }
+
+        Apostas apostas = new Apostas();
+        apostas.apostar(tickets.getTickets());
 
     }
 
