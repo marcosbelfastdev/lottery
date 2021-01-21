@@ -1,16 +1,11 @@
 package tests;
 
-import attributes.LoteriasCaixaAttributes;
+import components.Ticket;
 import components.TicketSeries;
 import org.junit.After;
 import org.junit.Test;
-import java.util.*;
-import components.Ticket;
-import org.openqa.selenium.WebDriver;
-import pages.LoteriasCaixaPage;
-import pages.MegaSenaPage;
-import pages.PortalLoteriasPage;
-import utils.DriverManager;
+import java.util.HashSet;
+import java.util.Random;
 
 public class MegaSena {
 
