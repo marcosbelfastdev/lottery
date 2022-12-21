@@ -1,14 +1,18 @@
 package attributes;
 
-import org.base.erbium.EElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-import static utils.DriverManager.driver;
 
-public class PortalLoteriasAttributes {
+public class PortalLoteriasAttributes extends BasicWebDriverInheritanceClass {
 
-    protected EElement cliqueAposte() {
-        return driver().find(By
+    public PortalLoteriasAttributes(WebDriver driver) {
+        super(driver);
+    }
+
+    protected WebElement cliqueAposte() {
+        return driver.findElement(By
                 .xpath("//a[text()='Clique e aposte']"));
     }
 

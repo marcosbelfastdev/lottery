@@ -2,10 +2,15 @@ package pages;
 
 import attributes.MegaSenaAttributes;
 import components.Ticket;
+import org.openqa.selenium.WebDriver;
 
 import java.util.TreeSet;
 
 public class MegaSenaPage extends MegaSenaAttributes {
+
+    public MegaSenaPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void apostarTudoAdicionarCarrinho(Ticket... tickets) {
 

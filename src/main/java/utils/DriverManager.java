@@ -1,46 +1,43 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.base.erbium.BaseState;
-import org.base.erbium.EDriver;
+
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
 
     public static WebDriver webDriver;
-    public static EDriver browser;
 
-    public static void launchBrowser() {
+
+    public WebDriver launchBrowser() {
 
         if (webDriver != null)
-            return;
+            return webDriver;
 
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-notifications");
         options.addArguments("--incognito");
-        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+//        options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         options.setExperimentalOption("useAutomationExtension", false);
         webDriver = new ChromeDriver(options);
+        webDriver.manage().timeouts().pageLoadTimeout(10000L, TimeUnit.MILLISECONDS);
+        webDriver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
-        BaseState baseState = new BaseState();
-        baseState.setProjectName("Lottery");
-        baseState.setEnvironment("PROD");
-        baseState.setTestName("Apostas");
-        baseState.setBaseStateUrl("http://loterias.caixa.gov.br/wps/portal/loterias");
-        browser = baseState.execute(webDriver);
-        browser.manage().window().maximize();
-        browser.manage().deleteAllCookies();
+
+
+        //baseState.setBaseStateUrl("http://loterias.caixa.gov.br/wps/portal/loterias");
+        webDriver.manage().window().setSize(new Dimension(1920, 1080));
+        return webDriver;
 
     }
 
-    public static EDriver driver() {
-        return browser;
-    }
 
     public static void quit() {
         if (webDriver != null) {

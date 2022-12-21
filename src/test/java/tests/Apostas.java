@@ -1,34 +1,32 @@
 package tests;
 
 import components.Ticket;
-import org.base.erbium.Common;
-import org.base.erbium.EDriver;
+
 import org.junit.BeforeClass;
+import org.openqa.selenium.WebDriver;
 import pages.LoteriasCaixaPage;
 import pages.MegaSenaPage;
 import pages.PortalLoteriasPage;
 import utils.DriverManager;
 
-import static utils.DriverManager.driver;
-
 public class Apostas {
 
-    EDriver browser;
+    WebDriver browser;
 
     public void apostar(Ticket... tickets) {
 
-        DriverManager.launchBrowser();
-        driver().setOption(Common.HIGHLIGHT_ELEMENTS, true);
-        driver().navigate().to("http://loterias.caixa.gov.br/wps/portal/loterias");
+        browser = new DriverManager().launchBrowser();
+        //driver().setOption(Common.HIGHLIGHT_ELEMENTS, true);
+        browser.navigate().to("http://loterias.caixa.gov.br/wps/portal/loterias");
 
-        PortalLoteriasPage portal = new PortalLoteriasPage();
+        PortalLoteriasPage portal = new PortalLoteriasPage(browser);
         portal.apostar();
 
-        LoteriasCaixaPage loterias = new LoteriasCaixaPage();
+        LoteriasCaixaPage loterias = new LoteriasCaixaPage(browser);
         loterias.confirmarIdade();
         loterias.apostar();
 
-        MegaSenaPage megaSena = new MegaSenaPage();
+        MegaSenaPage megaSena = new MegaSenaPage(browser);
         megaSena.apostarTudoAdicionarCarrinho(tickets);
     }
 

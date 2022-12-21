@@ -1,26 +1,31 @@
 package attributes;
 
-import org.base.erbium.EElement;
+
 import org.openqa.selenium.By;
-import static utils.DriverManager.driver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 
-public class LoteriasCaixaAttributes {
+public class LoteriasCaixaAttributes extends BasicWebDriverInheritanceClass {
 
-    protected EElement botaoSim = driver().find(By.id("botaosim"));
-    protected EElement aposteJaBotao = driver().find(By.xpath("//a[@class='btAposteJa ng-scope']"));
-    protected EElement megaSenaAposteAgoraLink = driver().find(By.xpath("//a[@href='#/mega-sena']"));
+    protected WebDriver driver;
 
-    protected EElement botaoSim() {
-        return driver().find(By.id("botaosim"));
+    public LoteriasCaixaAttributes(WebDriver driver) {
+        super(driver);
     }
 
-    protected EElement aposteJaBotao() {
-        return driver().find(By.xpath("//a[@class='btAposteJa ng-scope']"));
+
+    protected WebElement botaoSim() {
+        //return driver.findElement(By.id("botaosim"));
+        return driver.findElement(By.linkText("Sim"));
     }
 
-    protected EElement megaSenaAposteAgoraLink() {
-        return driver().find(By.xpath("//a[@href='#/mega-sena']"));
+    protected WebElement aposteJaBotao() {
+        return driver.findElement(By.xpath("//a[@class='btAposteJa ng-scope']"));
+    }
+
+    protected WebElement megaSenaAposteAgoraLink() {
+        return driver.findElement(By.xpath("//a[@href='#/mega-sena']"));
     }
 
 }

@@ -1,21 +1,24 @@
 package attributes;
 
-import org.base.erbium.Common;
-import org.base.erbium.EElement;
 import org.openqa.selenium.By;
-import static utils.DriverManager.driver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-public class MegaSenaAttributes {
 
-    protected EElement bola(int ball) {
+public class MegaSenaAttributes extends BasicWebDriverInheritanceClass {
+
+    public MegaSenaAttributes(WebDriver driver) {
+        super(driver);
+    }
+
+    protected WebElement bola(int ball) {
         String locator = "//li/a[@id='n" + String.format("%02d", ball) + "']";
-        EElement selectedBall = driver().find(By.xpath(locator));
-        selectedBall.setOption(Common.HIGHLIGHT_ELEMENTS, false);
+        WebElement selectedBall = driver.findElement(By.xpath(locator));
         return selectedBall;
     }
 
-    protected EElement colocarCarrinho() {
-        return driver().find((By.id("colocarnocarrinho")));
+    protected WebElement colocarCarrinho() {
+        return driver.findElement((By.id("colocarnocarrinho")));
     }
 
 }
